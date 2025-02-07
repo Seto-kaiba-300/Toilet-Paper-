@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pure Bliss Tissue</title>
+    <link rel="icon" href="fav.jpg" type="image/jpeg">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: gray;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #b0d5f5; /* Light Blue */
+            color: white;
+            padding: 15px;
+        }
+
+        nav button {
+            background-color: #009688; /* Teal */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            background-color: #2b4d82; /* Dark Blue on hover */
+        }
+
+        .page {
+            padding: 20px;
+        }
+
+        .animated-section {
+            font-size: 1.5em;
+            font-weight: bold;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .highlight {
+            background-color: #009688; /* Teal */
+            color: white;
+            font-size: 1.2em;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        .highlight:hover {
+            background-color: #2b4d82; /* Dark Blue on hover */
+        }
+
+        .contact-info {
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        .contact-info a {
+            color: #009688;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            color: #2b4d82; /* Dark Blue on hover */
+        }
+
+        /* Slideshow container */
+        .slideshow-container {
+            max-width: 100%;
+            position: relative;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Hide all images by default */
+        .slide {
+            display: none;
+            width: 100%;
+            height: auto;
+        }
+
+        /* Active slide style */
+        .active-slide {
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pure Bliss Tissue</h1>
+        <p>Softness You Can Trust</p>
+        <nav>
+            <button onclick="navigate('home')">Home</button>
+            <button onclick="navigate('contact')">Contact Us</button>
+        </nav>
+    </header>
+
+    <section id="home" class="page">
+        <h2>Welcome to Pure Bliss Tissue</h2>
+        <p>Providing high-quality tissue products with superior softness and durability.</p>
+
+        <!-- Slideshow container -->
+        <div class="slideshow-container">
+            <img class="slide" src="1.jpg" alt="Slide 1">
+            <img class="slide" src="2.jpg" alt="Slide 2">
+            <img class="slide" src="3.png" alt="Slide 3">
+            <img class="slide" src="4.png" alt="Slide 4">
+            <img class="slide" src="5.jpg" alt="Slide 5">
+        </div>
+
+        <div id="animated-text" class="animated-section"></div>
+
+        <!-- Highlighted link to Sizes & Sheets -->
+        <div class="highlight" onclick="navigate('sizes-sheets')">
+            Explore Sizes & Sheets
+        </div>
+    </section>
+
+    <section id="contact" class="page" style="display: none;">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p><strong>David:</strong> <a href="https://wa.me/+27785755000" target="_blank">WhatsApp</a></p>
+            <p><strong>Tumi:</strong> <a href="https://wa.me/+27795267404" target="_blank">WhatsApp</a></p>
+            <p><strong>Sanele:</strong> <a href="https://wa.me/+27829540327" target="_blank">WhatsApp</a></p>
+            <p><strong>Email:</strong> <a href="mailto:info@pureblisstissue.co.za" target="_blank">info@pureblisstissue.co.za</a></p>
+        </div>
+    </section>
+
+    <section id="sizes-sheets" class="page" style="display: none;">
+        <h2>Sizes & Sheet Count</h2>
+        <p>Check out the available tissue sizes and sheets:</p>
+        <ul>
+            <li>350 Sheets - Deluxe Virgin 2PLY</li>
+            <li>250 Sheets - Ultra Soft 1PLY</li>
+            <li>500 Sheets - Classic Economy 1PLY</li>
+            <li>300 Sheets - Packs of 24 & 48</li>
+        </ul>
+    </section>
+
+    <script>
+        function navigate(page) {
+            document.querySelectorAll('.page').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById(page).style.display = 'block';
+        }
+
+        const messages = [
+            "Deluxe Virgin 2PLY - Soft & Strong",
+            "Ultra Soft 1PLY - Gentle Touch",
+            "Classic Economy 1PLY - Affordable & Reliable",
+            "350, 250, 500, 300 Sheets Available",
+            "Packs of 24s & 48s - Perfect for Every Need"
+        ];
+        let index = 0;
+        const animatedText = document.getElementById("animated-text");
+
+        function cycleText() {
+            animatedText.style.opacity = 0;
+            setTimeout(() => {
+                animatedText.textContent = messages[index];
+                animatedText.style.opacity = 1;
+                index = (index + 1) % messages.length;
+            }, 1000);
+        }
+
+        setInterval(cycleText, 3000);
+        cycleText();
+
+        // Slideshow functionality
+        let slideIndex = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function showSlide() {
+            slides.forEach(slide => slide.classList.remove('active-slide')); // Hide all slides
+            slideIndex++;
+            if (slideIndex > slides.length) { slideIndex = 1; } // Loop back to the first slide
+            slides[slideIndex - 1].classList.add('active-slide'); // Show the current slide
+        }
+
+        setInterval(showSlide, 3000); // Change slide every 3 seconds
+        showSlide(); // Initial slide
+    </script>
+</body>
+</html>
